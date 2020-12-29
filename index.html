@@ -6,5 +6,63 @@
         <title>Pomodoro Timer</title>
         <script src="app.js" defer></script>
     </head>
-    <body></body>
+    <body>
+        <form class="waterForm">
+            <div>
+                <label for="botSize">Bottle Size in fl oz</label>
+                <input
+                    name="botSize"
+                    class="bottleSize"
+                    type="number"
+                    placeholder="20"
+                    required
+                />
+            </div>
+            <div>
+                <label for="waterGoal">What is your goal in fl oz?</label>
+                <input
+                    name="waterGoal"
+                    class="waterGoal"
+                    type="number"
+                    placeholder="128"
+                    required
+                />
+            </div>
+
+            <button class="waterSubmit">Submit</button>
+            <button class="waterReset">Reset</button>
+        </form>
+        <div class="waterCheckBoxes"></div>
+        <div class="waterMsg"></div>
+
+        <form class="pomForm">
+            <div>
+                <label for="pomDuration">Timer Duration</label>
+                <input
+                    name="pomDuration"
+                    class="pomDuration"
+                    type="number"
+                    placeholder="50"
+                    required
+                />
+            </div>
+            <div>
+                <label for="breakDuration">Break Duration</label>
+                <input
+                    name="breakDuration"
+                    class="breakDuration"
+                    type="number"
+                    placeholder="10"
+                    required
+                />
+            </div>
+
+            <button class="pomSubmit">Submit</button>
+            <button class="pomReset">Reset</button>
+
+            <div class="currentTime"></div>
+            <button class="timerToggle">Start</button>
+            <button class="timerReset">Reset</button>
+        </form>
+    </body>
 </html>
