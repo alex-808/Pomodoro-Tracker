@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Pomodoro Timer</title>
+        <link href="style.css" rel="stylesheet" />
         <script src="app.js" defer></script>
     </head>
     <body>
@@ -35,7 +36,7 @@
         <div class="waterCheckBoxes"></div>
         <div class="waterMsg"></div>
 
-        <form class="pomForm">
+        <form class="pomTimerForm">
             <div>
                 <label for="pomDuration">Timer Duration</label>
                 <input
@@ -59,10 +60,24 @@
 
             <button class="pomSubmit">Submit</button>
             <button class="pomReset">Reset</button>
-
-            <div class="currentTime"></div>
+            <div>Timer</div>
+            <div class="currentTime">0</div>
             <button class="timerToggle">Start</button>
             <button class="timerReset">Reset</button>
+            <button class="selectPom">Pomordoro</button>
+            <button class="selectBreak">Break</button>
+        </form>
+        <form class="pomCounterForm">
+            <div>Pom Counter</div>
+            <div class="pomCounter">0</div>
+            <button class="addPom">+1</button>
+            <button class="subPom">-1</button>
+            <button class="resetPom">Reset</button>
+            <div>Break Counter</div>
+            <div class="breakCounter">0</div>
+            <button class="addBreak">+1</button>
+            <button class="subBreak">-1</button>
+            <button class="resetBreak">Reset</button>
         </form>
     </body>
 </html>
