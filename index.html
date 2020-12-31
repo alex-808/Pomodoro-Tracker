@@ -8,12 +8,12 @@
         <script src="app.js" defer></script>
     </head>
     <body>
-        <form class="waterForm">
+        <form id="waterForm">
             <div>
                 <label for="botSize">Bottle Size in fl oz</label>
                 <input
                     name="botSize"
-                    class="bottleSize"
+                    id="bottleSize"
                     type="number"
                     placeholder="20"
                     required
@@ -23,25 +23,25 @@
                 <label for="waterGoal">What is your goal in fl oz?</label>
                 <input
                     name="waterGoal"
-                    class="waterGoal"
+                    id="waterGoal"
                     type="number"
                     placeholder="128"
                     required
                 />
             </div>
 
-            <button class="waterSubmit">Submit</button>
-            <button class="waterReset">Reset</button>
+            <button id="waterSubmit">Submit</button>
+            <button id="waterReset">Reset</button>
         </form>
-        <div class="waterCheckBoxes"></div>
-        <div class="waterMsg"></div>
+        <div id="waterCheckBoxes"></div>
+        <div id="waterMsg"></div>
 
-        <form class="pomTimerForm">
+        <form id="pomTimerForm">
             <div>
                 <label for="pomDuration">Timer Duration</label>
                 <input
                     name="pomDuration"
-                    class="pomDuration"
+                    id="pomDuration"
                     type="number"
                     placeholder="50"
                     required
@@ -51,33 +51,51 @@
                 <label for="breakDuration">Break Duration</label>
                 <input
                     name="breakDuration"
-                    class="breakDuration"
+                    id="breakDuration"
                     type="number"
                     placeholder="10"
                     required
                 />
             </div>
 
-            <button class="pomSubmit">Submit</button>
-            <button class="pomReset">Reset</button>
+            <button id="pomSubmit">Submit</button>
+            <button id="pomReset">Reset</button>
             <div>Timer</div>
-            <div class="currentTime">0</div>
-            <button class="timerToggle">Start</button>
-            <button class="timerReset">Reset</button>
-            <button class="selectPom">Pomordoro</button>
-            <button class="selectBreak">Break</button>
+            <div id="currentTime">0</div>
+            <button id="timerToggle">Start</button>
+            <button id="timerReset">Reset</button>
+            <button id="selectPom">Pomordoro</button>
+            <button id="selectBreak">Break</button>
         </form>
-        <form class="pomCounterForm">
+        <form id="pomCounterForm">
             <div>Pom Counter</div>
-            <div class="pomCounter">0</div>
-            <button class="addPom">+1</button>
-            <button class="subPom">-1</button>
-            <button class="resetPom">Reset</button>
+            <div id="pomCounter">0</div>
+            <button id="addPom">+1</button>
+            <button id="subPom">-1</button>
+            <button id="resetPom">Reset</button>
             <div>Break Counter</div>
-            <div class="breakCounter">0</div>
-            <button class="addBreak">+1</button>
-            <button class="subBreak">-1</button>
-            <button class="resetBreak">Reset</button>
+            <div id="breakCounter">0</div>
+            <button id="addBreak">+1</button>
+            <button id="subBreak">-1</button>
+            <button id="resetBreak">Reset</button>
+        </form>
+        <form>
+            <div>Notepad</div>
+            <textarea id="notePad"></textarea>
+        </form>
+        <form id="todosForm">
+            <div>ToDo List</div>
+            <input
+                name="addTodoField"
+                id="addTodoField"
+                type="text"
+                placeholder="Add ToDo Here"
+            />
+            <ul id="todoList"></ul>
+            <button id="addTodo">Add ToDo</button>
+        </form>
+        <form id="Git Commit Timer">
+            <div>Git Commit Timer</div>
         </form>
     </body>
 </html>

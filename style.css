@@ -9,3 +9,11 @@ form {
     border-width: 5px;
     padding: 10px;
 }
+
+ul {
+    list-style-type: none;
+}
+
+.todoStrikeThru {
+    text-decoration: line-through;
+}

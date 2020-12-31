@@ -1,14 +1,14 @@
 'use strict';
 
-// water tracker
+// WATER TRACKER
 
-const waterForm = document.querySelector('.waterForm');
-const bottleSizeField = document.querySelector('.bottleSize');
-const waterGoalField = document.querySelector('.waterGoal');
-const waterSubmit = document.querySelector('.waterSubmit');
-const waterReset = document.querySelector('.waterReset');
-const checkBoxDiv = document.querySelector('.waterCheckBoxes');
-const waterMsg = document.querySelector('.waterMsg');
+const waterForm = document.querySelector('#waterForm');
+const bottleSizeField = document.querySelector('#bottleSize');
+const waterGoalField = document.querySelector('#waterGoal');
+const waterSubmit = document.querySelector('#waterSubmit');
+const waterReset = document.querySelector('#waterReset');
+const checkBoxDiv = document.querySelector('#waterCheckBoxes');
+const waterMsg = document.querySelector('#waterMsg');
 let finishedWater = 0;
 let bottleSize = 0;
 let waterGoal = 0;
@@ -54,69 +54,81 @@ const generateWaterCBs = function (size, goal) {
     console.log(checkBoxNum);
 };
 
-// accept an input time
-// update UI with set time
-// use setTimer to create a function to countdown timer which updates the UI value
-// when timer hits 0, execute alarm
+// POM TIMERS
 
-// start and stop buttons
+const pomTimerForm = document.querySelector('#pomTimerForm');
+const pomDurationField = document.querySelector('#pomDuration');
+const breakDurationField = document.querySelector('#breakDuration');
+const pomTimeSubmitBtn = document.querySelector('#pomSubmit');
+const pomTimeResetBtn = document.querySelector('#pomReset');
 
-// break timer
-
-// pom timers
-const pomTimerForm = document.querySelector('.pomTimerForm');
-const pomDurationField = document.querySelector('.pomDuration');
-const breakDurationField = document.querySelector('.breakDuration');
-const pomSubmit = document.querySelector('.pomSubmit');
-const pomReset = document.querySelector('.pomReset');
 let pomDuration = 0;
 let breakDuration = 0;
-const currentTimeDiv = document.querySelector('.currentTime');
-const timerToggleBtn = document.querySelector('.timerToggle');
-const timerResetBtn = document.querySelector('.timerReset');
-const selectPomBtn = document.querySelector('.selectPom');
-const selectBreakBtn = document.querySelector('.selectBreak');
-const pomCounterDiv = document.querySelector('.pomCounter');
-const breakCounterDiv = document.querySelector('.breakCounter');
-let currentTime;
+
+const currentTimeDiv = document.querySelector('#currentTime');
+const timerToggleBtn = document.querySelector('#timerToggle');
+const timerResetBtn = document.querySelector('#timerReset');
+const selectPomBtn = document.querySelector('#selectPom');
+const selectBreakBtn = document.querySelector('#selectBreak');
+
+const pomCounterDiv = document.querySelector('#pomCounter');
+const breakCounterDiv = document.querySelector('#breakCounter');
+const addBreakBtn = document.querySelector('#addBreak');
+const subBreakBtn = document.querySelector('#subBreak');
+const addPomBtn = document.querySelector('#addPom');
+const subPomBtn = document.querySelector('#subPom');
+const resetPomBtn = document.querySelector('#resetPom');
+const resetBreakBtn = document.querySelector('#resetBreak');
+
+let currentTime = 0;
 let timerActive = false;
 let timer;
 let timerType = 'pomodoro';
 let breakCounter = 0;
 let pomodoroCounter = 0;
 
+const updatePomTrackers = function (timerType) {
+    if (timerType === 'pomodoro') {
+        pomodoroCounter++;
+        pomCounterDiv.textContent = pomodoroCounter;
+    } else {
+        breakCounter++;
+        breakCounterDiv.textContent = breakCounter;
+    }
+};
+
 const startTimer = function () {
+    console.log('timer started');
+    timerActive = true;
     timer = setInterval(function () {
         currentTime--;
         currentTimeDiv.textContent = currentTime;
+        timerToggleBtn.textContent = 'Stop';
 
+        console.log(timerActive);
         if (currentTime === 0) {
             stopTimer();
-            timerActive = false;
-            if (timerType === 'pomodoro') {
-                pomodoroCounter++;
-                pomCounterDiv.textContent = pomodoroCounter;
-            } else {
-                breakCounter++;
-                breakCounterDiv.textContent = breakCounter;
-            }
+            updatePomTrackers(timerType);
         }
-    }, 100);
+    }, 10);
 };
 
 const stopTimer = function () {
+    console.log('timer stopped');
+    timerToggleBtn.textContent = 'Start';
     clearInterval(timer);
+    timerActive = false;
 };
 
-pomSubmit.addEventListener('click', function (e) {
+pomTimeSubmitBtn.addEventListener('click', function (e) {
     e.preventDefault();
 
     // should check for null values
 
-    pomDuration = pomDurationField.value;
-    breakDuration = breakDurationField.value;
-    // pomDuration = 50;
-    // breakDuration = 10;
+    // pomDuration = pomDurationField.value;
+    // breakDuration = breakDurationField.value;
+    pomDuration = 50;
+    breakDuration = 10;
     currentTime = pomDuration;
     currentTimeDiv.textContent = currentTime;
 });
@@ -130,15 +142,17 @@ timerResetBtn.addEventListener('click', function (e) {
 
 timerToggleBtn.addEventListener('click', function (e) {
     e.preventDefault();
+    console.log(timerActive);
     // fix button text when time has run out
-    if (timerActive) {
-        timerToggleBtn.textContent = 'Start';
-        stopTimer();
-    } else if (currentTime !== 0) {
-        timerToggleBtn.textContent = 'Stop';
-        startTimer();
+    if (currentTime !== 0) {
+        if (timerActive) {
+            stopTimer();
+        } else {
+            startTimer();
+        }
     }
-    timerActive = timerActive ? false : true;
+
+    console.log(timerActive);
 });
 
 selectPomBtn.addEventListener('click', function (e) {
@@ -157,15 +171,86 @@ selectBreakBtn.addEventListener('click', function (e) {
     currentTimeDiv.textContent = currentTime;
 });
 
-// pom/break trackers
+// POM AND BREAK TRACKERS
 
-// pom tracker
-// receives goal poms
+addPomBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    pomodoroCounter++;
+    pomCounterDiv.textContent = pomodoroCounter;
+});
 
-// git timer
+subPomBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (pomodoroCounter !== 0) pomodoroCounter--;
+    pomCounterDiv.textContent = pomodoroCounter;
+});
 
-// dark mode
+resetPomBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    pomodoroCounter = 0;
+    pomCounterDiv.textContent = pomodoroCounter;
+});
 
-// to do list
+addBreakBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    breakCounter++;
+    breakCounterDiv.textContent = breakCounter;
+});
 
-// notepad
+subBreakBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (breakCounter !== 0) breakCounter--;
+    breakCounterDiv.textContent = breakCounter;
+});
+
+resetBreakBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    breakCounter = 0;
+    breakCounterDiv.textContent = breakCounter;
+});
+
+// NOTEPAD
+
+const notePadTextArea = document.querySelector('#notePad');
+let notePadText;
+
+notePadTextArea.addEventListener('keyup', function (e) {
+    notePadText = notePadTextArea.value;
+    console.log(notePadText);
+});
+
+// TODO LIST
+
+// Add new todo
+
+// On todo itself:
+// Delete todo
+// Edit todo
+// Mark todo as completed
+
+const todosForm = document.querySelector('#todosForm');
+const todoList = document.querySelector('#todoList');
+const addTodoField = document.querySelector('#addTodoField');
+const addTodoBtn = document.querySelector('#addTodo');
+
+addTodoBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const todoText = addTodoField.value;
+    addTodoField.value = '';
+
+    const todoItem = document.createElement('li');
+    const todoCB = document.createElement('input');
+    todoCB.type = 'checkbox';
+
+    todoItem.textContent = todoText;
+    todoList.prepend(todoItem);
+    todoItem.prepend(todoCB);
+
+    todoCB.addEventListener('click', function (e) {
+        console.dir(e.target.checked);
+        if (e.target.checked) {
+            todoItem.classList.add('todoStrikeThru');
+        } else todoItem.classList.remove('todoStrikeThru');
+    });
+});
