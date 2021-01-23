@@ -254,3 +254,21 @@ addTodoBtn.addEventListener('click', function (e) {
         } else todoItem.classList.remove('todoStrikeThru');
     });
 });
+
+//
+
+// GIT TIMER
+
+const gitTimerDurationField = document.querySelector('#gitTimerDuration');
+const gitDurationSubmitBtn = document.querySelector('#gitDurationSubmit');
+const gitDurationResetBtn = document.querySelector('#gitDurationReset');
+const currentGitIntervalDiv = document.querySelector('#currentGitInterval');
+let gitDuration;
+
+gitDurationSubmitBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    gitDuration = gitTimerDurationField.value;
+    currentGitIntervalDiv.textContent = gitDuration;
+});
+
+// COMMIT TRACKER

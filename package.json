@@ -1,0 +1,24 @@
+{
+    "name": "pom-timer",
+    "version": "0.0.1",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "parcel index.html",
+        "build": "parcel build index.html",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rawbeef-808/Pomodoro-Tracker.git"
+    },
+    "author": "Alex Davis",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/rawbeef-808/Pomodoro-Tracker/issues"
+    },
+    "homepage": "https://github.com/rawbeef-808/Pomodoro-Tracker#readme",
+    "dependencies": {
+        "parcel": "^1.12.4"
+    }
+}
