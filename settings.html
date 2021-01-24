@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pomodoro Timer</title>
+        <link href="./styles/style.css" rel="stylesheet" />
+        <script src="./settings.js" defer></script>
+    </head>
+    <body>
+        <form id="waterForm">
+            <div>
+                <label for="botSize">Bottle Size in fl oz</label>
+                <input
+                    name="botSize"
+                    id="bottleSize"
+                    type="number"
+                    placeholder="20"
+                    required
+                />
+            </div>
+            <div>
+                <label for="waterGoal">What is your goal in fl oz?</label>
+                <input
+                    name="waterGoal"
+                    id="waterGoal"
+                    type="number"
+                    placeholder="128"
+                    required
+                />
+            </div>
+
+            <button id="waterSubmit">Submit</button>
+            <button id="waterReset">Reset</button>
+        </form>
+        <div id="waterCheckBoxes"></div>
+        <div id="waterMsg"></div>
+
+        <form id="pomTimerForm">
+            <div>
+                <label for="pomDuration">Timer Duration</label>
+                <input
+                    name="pomDuration"
+                    id="pomDuration"
+                    type="number"
+                    placeholder="50"
+                    required
+                />
+            </div>
+            <div>
+                <label for="breakDuration">Break Duration</label>
+                <input
+                    name="breakDuration"
+                    id="breakDuration"
+                    type="number"
+                    placeholder="10"
+                    required
+                />
+            </div>
+
+            <button id="pomSubmit">Submit</button>
+            <button id="pomReset">Reset</button>
+            <div>Timer</div>
+            <div id="currentTime">0</div>
+            <button id="timerToggle">Start</button>
+            <button id="timerReset">Reset</button>
+            <button id="selectPom">Pomordoro</button>
+            <button id="selectBreak">Break</button>
+        </form>
+        <form id="pomCounterForm">
+            <div>Pom Counter</div>
+            <div id="pomCounter">0</div>
+            <button id="addPom">+1</button>
+            <button id="subPom">-1</button>
+            <button id="resetPom">Reset</button>
+            <div>Break Counter</div>
+            <div id="breakCounter">0</div>
+            <button id="addBreak">+1</button>
+            <button id="subBreak">-1</button>
+            <button id="resetBreak">Reset</button>
+        </form>
+
+        <form id="Git Commit Timer">
+            <div>Git Commit Timer</div>
+            <label for="gitTimerDuration"
+                >How often would you like to commit?</label
+            >
+            <input
+                name="gitTimerDuration"
+                id="gitTimerDuration"
+                type="number"
+                placeholder="30"
+            />
+            <button id="gitDurationSubmit">Submit</button>
+            <button id="gitDurationReset">Reset</button>
+            <div>Current Git Commit Interval:</div>
+            <div id="currentGitInterval">Not set</div>
+        </form>
+        <a href="index.html"><button>Back to Timer</button></a>
+    </body>
+</html>
