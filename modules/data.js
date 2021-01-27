@@ -20,6 +20,18 @@ const settings = {
     },
 };
 
+const timerState = {
+    currentTime: 0,
+    timerActive: false,
+    timerType: 'pomodoro',
+    updatefromLocalStorage() {
+        const data = JSON.parse(localStorage.timerState);
+        for (let [key, value] of Object.entries(data)) {
+            this[`${key}`] = value;
+        }
+    },
+};
+
 const userData = {
     finishedWater: 0,
     pomCounter: 0,
@@ -35,20 +47,26 @@ const userData = {
     },
 };
 
-const updateLSfromObjs = function () {
+const updateLocalStorage = function () {
     localStorage.setItem('settings', JSON.stringify(settings));
     localStorage.setItem('userData', JSON.stringify(userData));
+    localStorage.setItem('timerState', JSON.stringify(timerState));
 };
 
 const setupData = function () {
-    if (!localStorage.settings && !localStorage.userData) {
-        updateLSfromObjs();
+    if (
+        !localStorage.settings ||
+        !localStorage.userData ||
+        !localStorage.timerState
+    ) {
+        updateLocalStorage();
     } else {
         settings.updatefromLocalStorage();
         userData.updatefromLocalStorage();
+        timerState.updatefromLocalStorage();
     }
 };
 
 setupData();
 
-export { settings, userData, updateLSfromObjs };
+export { settings, userData, timerState, updateLocalStorage };
