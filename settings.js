@@ -5,18 +5,30 @@ import { settings, userData, updateLocalStorage } from './modules/data';
 const waterForm = document.querySelector('#waterForm');
 const bottleSizeField = document.querySelector('#bottleSize');
 const waterGoalField = document.querySelector('#waterGoal');
-const waterSubmit = document.querySelector('#waterSubmit');
 const waterReset = document.querySelector('#waterReset');
 const checkBoxDiv = document.querySelector('#waterCheckBoxes');
 const waterMsg = document.querySelector('#waterMsg');
 
-waterSubmit.addEventListener('click', function (e) {
+const saveBtn = document.querySelector('.save-btn');
+
+saveBtn.addEventListener('click', function (e) {
     e.preventDefault();
+    // update water settings
     settings.waterSettings.bottleSize = Number(bottleSizeField.value);
     settings.waterSettings.waterGoal = Number(waterGoalField.value);
+    //update pom timer settings
+    settings.pomSettings.pomDuration = Number(pomDurationField.value);
+    settings.pomSettings.breakDuration = Number(breakDurationField.value);
+    // update git timer settings
+    settings.commitSettings.commitFrequency = Number(
+        commitFrequencyField.value
+    );
+    settings.commitSettings.commitGoal = Number(commitGoalField.value);
+
     updateLocalStorage();
-    // generateWaterCBs(bottleSize, waterGoal);
-    // waterForm.style.visibility = 'hidden';
+
+    console.log(settings);
+    console.log(localStorage.settings);
 });
 
 const generateWaterCBs = function (size, goal) {
@@ -51,31 +63,19 @@ const generateWaterCBs = function (size, goal) {
 
 const pomDurationField = document.querySelector('#pomDuration');
 const breakDurationField = document.querySelector('#breakDuration');
-const pomTimeSubmitBtn = document.querySelector('#pomSubmit');
 const pomTimeResetBtn = document.querySelector('#pomReset');
 
-const pomCounterDiv = document.querySelector('#pomCounter');
+// BREAK TRACKER
 const breakCounterDiv = document.querySelector('#breakCounter');
 const addBreakBtn = document.querySelector('#addBreak');
 const subBreakBtn = document.querySelector('#subBreak');
+const resetBreakBtn = document.querySelector('#resetBreak');
+
+// POM TRACKER
+const pomCounterDiv = document.querySelector('#pomCounter');
 const addPomBtn = document.querySelector('#addPom');
 const subPomBtn = document.querySelector('#subPom');
 const resetPomBtn = document.querySelector('#resetPom');
-const resetBreakBtn = document.querySelector('#resetBreak');
-
-pomTimeSubmitBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-
-    // should check for null values
-
-    settings.pomSettings.pomDuration = Number(pomDurationField.value);
-    settings.pomSettings.breakDuration = Number(breakDurationField.value);
-    updateLocalStorage();
-    // userData.pomDuration = 50;
-    // breakDuration = 10;
-    // currentTime = pomDuration;
-    // currentTimeDiv.textContent = currentTime;
-});
 
 // POM TRACKER ADD/SUBTRACT/RESET
 
@@ -126,15 +126,8 @@ resetBreakBtn.addEventListener('click', function (e) {
 // GIT TIMER
 
 const commitFrequencyField = document.querySelector('#gitTimerDuration');
-const commitFrequencySubmitBtn = document.querySelector('#gitDurationSubmit');
+const commitGoalField = document.querySelector('#gitTimerGoal');
 const commitFrequencyResetBtn = document.querySelector('#gitDurationReset');
-const commitFrequencyTextDiv = document.querySelector('#currentGitInterval');
-
-commitFrequencySubmitBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    settings.commitSettings = Number(commitFrequencyField.value);
-    commitFrequencyTextDiv.textContent = settings.commitSettings;
-});
 
 commitFrequencyResetBtn.addEventListener('click', function () {});
 
@@ -149,8 +142,7 @@ const setup = function () {
     breakDurationField.value = settings.pomSettings.breakDuration;
 
     commitFrequencyField.value = settings.commitSettings.commitFrequency;
+    commitGoalField.value = settings.commitSettings.commitGoal;
 };
 
 setup();
-
-console.log(userData);

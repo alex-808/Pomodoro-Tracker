@@ -1,16 +1,16 @@
 const settings = {
     waterSettings: {
-        bottleSize: 0,
-        waterGoal: 0,
+        bottleSize: 25,
+        waterGoal: 124,
     },
     pomSettings: {
-        pomDuration: 0,
-        breakDuration: 0,
-        pomGoal: 0,
+        pomDuration: 50,
+        breakDuration: 10,
+        pomGoal: 7,
     },
     commitSettings: {
-        commitFrequency: 0,
-        commitGoal: 0,
+        commitFrequency: 30,
+        commitGoal: 5,
     },
     updatefromLocalStorage() {
         const data = JSON.parse(localStorage.settings);

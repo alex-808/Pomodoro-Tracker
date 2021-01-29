@@ -30,7 +30,6 @@
                 />
             </div>
 
-            <button id="waterSubmit">Submit</button>
             <button id="waterReset">Reset</button>
         </form>
         <div id="waterCheckBoxes"></div>
@@ -58,7 +57,6 @@
                 />
             </div>
 
-            <button id="pomSubmit">Submit</button>
             <button id="pomReset">Reset</button>
         </form>
         <form id="pomCounterForm">
@@ -76,20 +74,31 @@
 
         <form id="Git Commit Timer">
             <div>Git Commit Timer</div>
-            <label for="gitTimerDuration"
-                >How often would you like to commit?</label
-            >
-            <input
-                name="gitTimerDuration"
-                id="gitTimerDuration"
-                type="number"
-                placeholder="30"
-            />
-            <button id="gitDurationSubmit">Submit</button>
+            <div>
+                <label for="gitTimerDuration"
+                    >How often would you like to commit?</label
+                >
+                <input
+                    name="gitTimerDuration"
+                    id="gitTimerDuration"
+                    type="number"
+                    placeholder="30"
+                />
+            </div>
+            <div>
+                <label for="gitTimerGoal"
+                    >How many times per day do you want to commit?</label
+                >
+                <input
+                    name="gitTimerGoal"
+                    id="gitTimerGoal"
+                    type="number"
+                    placeholder="30"
+                />
+            </div>
             <button id="gitDurationReset">Reset</button>
-            <div>Current Git Commit Interval:</div>
-            <div id="currentGitInterval">Not set</div>
         </form>
         <a href="index.html"><button>Back to Timer</button></a>
+        <button class="save-btn">Save</button>
     </body>
 </html>
