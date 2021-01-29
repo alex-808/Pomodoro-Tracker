@@ -1,5 +1,7 @@
 'use strict';
 
+// todo Add event listeners on generated checkboxes
+
 import {
     settings,
     timerState,
@@ -101,10 +103,12 @@ selectBreakBtn.addEventListener('click', function (e) {
 const updatePomTrackers = function (timerType) {
     if (timerState.timerType === 'pomodoro') {
         userData.pomCounter++;
-        pomCounterDiv.textContent = userData.pomCounter;
+        const unchecked = pomCheckBoxes.find((el) => el.checked === false);
+        unchecked.checked = true;
     } else {
         userData.breakCounter++;
-        breakCounterDiv.textContent = userData.breakCounter;
+        const unchecked = breakCheckBoxes.find((el) => el.checked === false);
+        unchecked.checked = true;
     }
 };
 
@@ -172,8 +176,11 @@ const generateCheckBoxes = function (el, goal, current) {
         checkBoxArr.push(checkbox);
     }
     console.dir(checkBoxArr[0]);
-    // return checkBoxArr;
+    return checkBoxArr;
 };
+
+let pomCheckBoxes;
+let breakCheckBoxes;
 
 const setup = function () {
     notePadTextArea.value = userData.notePadText;
@@ -183,12 +190,12 @@ const setup = function () {
         startTimer();
     }
 
-    generateCheckBoxes(
+    pomCheckBoxes = generateCheckBoxes(
         pomCheckBoxDiv,
         settings.pomSettings.pomGoal,
         userData.pomCounter
     );
-    generateCheckBoxes(
+    breakCheckBoxes = generateCheckBoxes(
         breakCheckBoxDiv,
         settings.pomSettings.breakGoal,
         userData.breakCounter
