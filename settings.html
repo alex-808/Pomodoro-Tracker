@@ -10,24 +10,22 @@
     <body>
         <form id="waterForm">
             <div>
-                <label for="botSize">Bottle Size in fl oz</label>
+                <label for="botSize">Bottle Size: </label>
                 <input
                     name="botSize"
                     id="bottleSize"
                     type="number"
-                    placeholder="20"
                     required
-                />
+                /><span> fl oz</span>
             </div>
             <div>
-                <label for="waterGoal">What is your goal in fl oz?</label>
+                <label for="waterGoal">Daily Goal: </label>
                 <input
                     name="waterGoal"
                     id="waterGoal"
                     type="number"
-                    placeholder="128"
                     required
-                />
+                /><span> fl oz</span>
             </div>
 
             <button id="waterReset">Reset</button>
@@ -37,24 +35,41 @@
 
         <form id="pomTimerForm">
             <div>
-                <label for="pomDuration">Timer Duration</label>
+                <label for="pomDuration">Timer Duration: </label>
                 <input
                     name="pomDuration"
                     id="pomDuration"
                     type="number"
-                    placeholder="50"
                     required
-                />
+                /><span> minutes</span>
             </div>
+
             <div>
-                <label for="breakDuration">Break Duration</label>
+                <label for="breakDuration">Break Duration: </label>
                 <input
                     name="breakDuration"
                     id="breakDuration"
                     type="number"
-                    placeholder="10"
                     required
-                />
+                /><span> minutes</span>
+            </div>
+            <div>
+                <label for="pomGoal">Pom Goal: </label>
+                <input
+                    name="pomGoal"
+                    id="pomGoal"
+                    type="number"
+                    required
+                /><span> poms</span>
+            </div>
+            <div>
+                <label for="breakGoal">Break Goal: </label>
+                <input
+                    name="breakGoal"
+                    id="breakGoal"
+                    type="number"
+                    required
+                /><span> breaks</span>
             </div>
 
             <button id="pomReset">Reset</button>
@@ -71,30 +86,21 @@
             <button id="subBreak">-1</button>
             <button id="resetBreak">Reset</button>
         </form>
-
         <form id="Git Commit Timer">
             <div>Git Commit Timer</div>
             <div>
-                <label for="gitTimerDuration"
-                    >How often would you like to commit?</label
-                >
+                <label for="gitTimerDuration">Commit frequency: </label
+                ><span> Every</span>
                 <input
                     name="gitTimerDuration"
                     id="gitTimerDuration"
                     type="number"
-                    placeholder="30"
-                />
+                /><span> minutes</span>
             </div>
             <div>
-                <label for="gitTimerGoal"
-                    >How many times per day do you want to commit?</label
-                >
-                <input
-                    name="gitTimerGoal"
-                    id="gitTimerGoal"
-                    type="number"
-                    placeholder="30"
-                />
+                <label for="gitTimerGoal">Daily Goal: </label>
+                <input name="gitTimerGoal" id="gitTimerGoal" type="number" />
+                <span> times</span>
             </div>
             <button id="gitDurationReset">Reset</button>
         </form>

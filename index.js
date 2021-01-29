@@ -20,6 +20,13 @@ const breakCounterDiv = document.querySelector('#breakCounter');
 const pomCounterDiv = document.querySelector('#pomCounter');
 const currentTimeDiv = document.querySelector('#currentTime');
 
+// CHECKBOX DIVS
+
+const pomCheckBoxDiv = document.querySelector('#pomCBs');
+const breakCheckBoxDiv = document.querySelector('#breakCBs');
+const bottleCheckBoxDiv = document.querySelector('#bottleCBs');
+const commitCheckBoxDiv = document.querySelector('#commitCBs');
+
 // TIMER CONTROL
 
 const startTimer = function () {
@@ -151,14 +158,41 @@ window.addEventListener('unload', function () {
     updateLocalStorage();
 });
 
+const generateCheckBoxes = function (el, goal, current) {
+    const checkBoxArr = [];
+    console.log(current);
+
+    for (let i = 0; i < goal; i++) {
+        const checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        el.append(checkbox);
+        if (i < current) {
+            checkbox.checked = true;
+        }
+        checkBoxArr.push(checkbox);
+    }
+    console.dir(checkBoxArr[0]);
+    // return checkBoxArr;
+};
+
 const setup = function () {
     notePadTextArea.value = userData.notePadText;
     currentTimeDiv.textContent = timerState.currentTime;
+
     if (timerState.timerActive === true) {
         startTimer();
     }
-    pomCounterDiv.textContent = userData.pomCounter;
-    breakCounterDiv.textContent = userData.breakCounter;
+
+    generateCheckBoxes(
+        pomCheckBoxDiv,
+        settings.pomSettings.pomGoal,
+        userData.pomCounter
+    );
+    generateCheckBoxes(
+        breakCheckBoxDiv,
+        settings.pomSettings.breakGoal,
+        userData.breakCounter
+    );
 };
 
 setup();

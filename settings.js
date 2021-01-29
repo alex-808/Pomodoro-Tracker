@@ -1,77 +1,23 @@
-// replace all the "submit" and "reset" buttons with a single "save" button
-
 import { settings, userData, updateLocalStorage } from './modules/data';
 
-const waterForm = document.querySelector('#waterForm');
+// todo: Add functionality to the reset buttons
+
+// WATER TRACKER ELEMENTS
+
 const bottleSizeField = document.querySelector('#bottleSize');
 const waterGoalField = document.querySelector('#waterGoal');
 const waterReset = document.querySelector('#waterReset');
-const checkBoxDiv = document.querySelector('#waterCheckBoxes');
-const waterMsg = document.querySelector('#waterMsg');
 
-const saveBtn = document.querySelector('.save-btn');
-
-saveBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    // update water settings
-    settings.waterSettings.bottleSize = Number(bottleSizeField.value);
-    settings.waterSettings.waterGoal = Number(waterGoalField.value);
-    //update pom timer settings
-    settings.pomSettings.pomDuration = Number(pomDurationField.value);
-    settings.pomSettings.breakDuration = Number(breakDurationField.value);
-    // update git timer settings
-    settings.commitSettings.commitFrequency = Number(
-        commitFrequencyField.value
-    );
-    settings.commitSettings.commitGoal = Number(commitGoalField.value);
-
-    updateLocalStorage();
-
-    console.log(settings);
-    console.log(localStorage.settings);
-});
-
-const generateWaterCBs = function (size, goal) {
-    const checkBoxNum = Math.ceil(goal / size);
-
-    for (let i = 0; i < checkBoxNum; i++) {
-        const checkBox = document.createElement('input');
-        checkBox.type = 'checkbox';
-        checkBox.id = 'checkbox' + i;
-
-        checkBoxDiv.prepend(checkBox);
-    }
-
-    checkBoxDiv.addEventListener('click', function (e) {
-        if (e.target.tagName === 'INPUT') {
-            if (e.target.checked === true) {
-                userData.finishedWater++;
-            } else if (e.target.tagName === 'INPUT') {
-                userData.finishedWater--;
-            }
-        }
-        const msg = `You have drank ${
-            settings.waterSettings.bottleSize * userData.finishedWater
-        } oz of ${settings.waterSettings.waterGoal} oz`;
-        waterMsg.textContent = msg;
-    });
-
-    console.log(checkBoxNum);
-};
-
-// POM TIMERS
+// POM TIMER ELEMENTS
 
 const pomDurationField = document.querySelector('#pomDuration');
 const breakDurationField = document.querySelector('#breakDuration');
+const pomGoalField = document.querySelector('#pomGoal');
+const breakGoalField = document.querySelector('#breakGoal');
 const pomTimeResetBtn = document.querySelector('#pomReset');
 
-// BREAK TRACKER
-const breakCounterDiv = document.querySelector('#breakCounter');
-const addBreakBtn = document.querySelector('#addBreak');
-const subBreakBtn = document.querySelector('#subBreak');
-const resetBreakBtn = document.querySelector('#resetBreak');
+// POM TRACKER ELEMENTS
 
-// POM TRACKER
 const pomCounterDiv = document.querySelector('#pomCounter');
 const addPomBtn = document.querySelector('#addPom');
 const subPomBtn = document.querySelector('#subPom');
@@ -100,7 +46,14 @@ resetPomBtn.addEventListener('click', function (e) {
     updateLocalStorage();
 });
 
-// BREAK TRACK ADD/SUBTRACT/RESET
+// BREAK TRACKER ELEMENTS
+
+const breakCounterDiv = document.querySelector('#breakCounter');
+const addBreakBtn = document.querySelector('#addBreak');
+const subBreakBtn = document.querySelector('#subBreak');
+const resetBreakBtn = document.querySelector('#resetBreak');
+
+// BREAK TRACKER ADD/SUBTRACT/RESET
 
 addBreakBtn.addEventListener('click', function (e) {
     e.preventDefault();
@@ -123,13 +76,39 @@ resetBreakBtn.addEventListener('click', function (e) {
     updateLocalStorage();
 });
 
-// GIT TIMER
+// GIT TIMER ELEMENTS
 
 const commitFrequencyField = document.querySelector('#gitTimerDuration');
 const commitGoalField = document.querySelector('#gitTimerGoal');
 const commitFrequencyResetBtn = document.querySelector('#gitDurationReset');
 
-commitFrequencyResetBtn.addEventListener('click', function () {});
+// SAVE BUTTON
+
+const saveBtn = document.querySelector('.save-btn');
+
+saveBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    // update water settings
+    settings.waterSettings.bottleSize = Number(bottleSizeField.value);
+    settings.waterSettings.waterGoal = Number(waterGoalField.value);
+    //update pom timer settings
+    settings.pomSettings.pomDuration = Number(pomDurationField.value);
+    settings.pomSettings.breakDuration = Number(breakDurationField.value);
+    settings.pomSettings.pomGoal = Number(pomGoalField.value);
+    settings.pomSettings.breakGoal = Number(breakGoalField.value);
+    // update git timer settings
+    settings.commitSettings.commitFrequency = Number(
+        commitFrequencyField.value
+    );
+    settings.commitSettings.commitGoal = Number(commitGoalField.value);
+
+    updateLocalStorage();
+
+    console.log(settings);
+    console.log(localStorage.settings);
+});
+
+// SETUP
 
 const setup = function () {
     pomCounterDiv.textContent = userData.pomCounter;
@@ -141,8 +120,12 @@ const setup = function () {
     pomDurationField.value = settings.pomSettings.pomDuration;
     breakDurationField.value = settings.pomSettings.breakDuration;
 
+    pomGoalField.value = settings.pomSettings.pomGoal;
+    breakGoalField.value = settings.pomSettings.breakGoal;
+
     commitFrequencyField.value = settings.commitSettings.commitFrequency;
     commitGoalField.value = settings.commitSettings.commitGoal;
 };
+console.log(settings.pomSettings.pomGoal);
 
 setup();

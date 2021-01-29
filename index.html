@@ -8,9 +8,6 @@
         <script src="index.js" defer></script>
     </head>
     <body>
-        <div id="waterCheckBoxes"></div>
-        <div id="waterMsg"></div>
-
         <form id="pomTimerForm">
             <div>Timer</div>
             <div id="currentTime">0</div>
@@ -19,13 +16,17 @@
             <button id="selectPom">Pomordoro</button>
             <button id="selectBreak">Break</button>
         </form>
-        <div id="pomCounter"></div>
-        <div id="breakCounter"></div>
-        <form>
+
+        <div id="pomCBs">Poms:</div>
+        <div id="breakCBs">Breaks:</div>
+        <div id="bottleCBs">Bottles:</div>
+        <div id="commitCBs">Commits:</div>
+
+        <form class="invisible">
             <div>Notepad</div>
             <textarea id="notePad"></textarea>
         </form>
-        <form id="todosForm">
+        <form id="todosForm" class="invisible">
             <div>ToDo List</div>
             <input
                 name="addTodoField"

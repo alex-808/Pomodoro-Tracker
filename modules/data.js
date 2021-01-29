@@ -7,6 +7,7 @@ const settings = {
         pomDuration: 50,
         breakDuration: 10,
         pomGoal: 7,
+        breakGoal: 7,
     },
     commitSettings: {
         commitFrequency: 30,
@@ -21,7 +22,7 @@ const settings = {
 };
 
 const timerState = {
-    currentTime: 0,
+    currentTime: 50,
     timerActive: false,
     timerType: 'pomodoro',
     updatefromLocalStorage() {
@@ -48,9 +49,11 @@ const userData = {
 };
 
 const updateLocalStorage = function () {
+    console.log(settings.pomSettings.pomGoal);
     localStorage.setItem('settings', JSON.stringify(settings));
     localStorage.setItem('userData', JSON.stringify(userData));
     localStorage.setItem('timerState', JSON.stringify(timerState));
+    console.log(settings.pomSettings.pomGoal);
 };
 
 const setupData = function () {
@@ -59,8 +62,10 @@ const setupData = function () {
         !localStorage.userData ||
         !localStorage.timerState
     ) {
+        console.log('Updated localStorage');
         updateLocalStorage();
     } else {
+        console.log('Updated from localStorage');
         settings.updatefromLocalStorage();
         userData.updatefromLocalStorage();
         timerState.updatefromLocalStorage();
