@@ -1,6 +1,5 @@
 'use strict';
 
-// todo Add commit timer functionality to pom timer
 // todo Add ability to add checkboxes even when daily goal has been exceeded
 // todo Add daily reset function for user data
 // todo Add timer sound effects
@@ -37,12 +36,12 @@ const startTimer = function () {
         // update totalPomElapsed time if pomodoro timer
         if (timerState.timerType === 'pomodoro') {
             timerState.totalPomElapsedTime++;
-            console.log(timerState.totalPomElapsedTime);
-            if (
+            const commitFreqHit =
                 timerState.totalPomElapsedTime %
-                    settings.commitSettings.commitFrequency ===
-                0
-            ) {
+                settings.commitSettings.commitFrequency
+                    ? false
+                    : true;
+            if (commitFreqHit && !settings.commitSettings.commitDisabled) {
                 const prompt = window.prompt('Did you commit? (Y/N)');
                 if (prompt === 'y') {
                     updateTrackerFromTimer('gitCounter', commitCheckBoxes);
@@ -75,7 +74,19 @@ const updateTrackerFromTimer = function (prop, checkboxes) {
     userData[prop]++;
     console.log(checkboxes);
     const unchecked = checkboxes.find((el) => el.checked === false);
+    if (!unchecked) {
+        const parent = checkboxes[0].parentElement;
+        addCheckedBox(parent);
+        return;
+    }
     unchecked.checked = true;
+};
+
+const addCheckedBox = function (el) {
+    const checkedBox = document.createElement('input');
+    checkedBox.setAttribute('type', 'checkbox');
+    checkedBox.checked = true;
+    el.append(checkedBox);
 };
 
 // TIMER BUTTONS
@@ -174,8 +185,8 @@ window.addEventListener('unload', function () {
 
 const generateCheckBoxes = function (el, goal, current) {
     const checkBoxArr = [];
-
-    for (let i = 0; i < goal; i++) {
+    const max = goal > current ? goal : current;
+    for (let i = 0; i < max; i++) {
         const checkbox = document.createElement('input');
         checkbox.setAttribute('type', 'checkbox');
         el.append(checkbox);
@@ -195,16 +206,11 @@ const bottleCheckBoxDiv = document.querySelector('#bottleCBs');
 const commitCheckBoxDiv = document.querySelector('#commitCBs');
 
 const updateUserDataFromCB = function (prop, event) {
-    console.log(prop);
-    console.log(event);
-
     if (event.target.checked) {
         userData[prop] += 1;
     } else {
         userData[prop] -= 1;
     }
-    console.log(prop);
-    console.log(userData[prop]);
 };
 
 pomCheckBoxDiv.addEventListener('click', function (e) {

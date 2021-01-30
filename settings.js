@@ -76,10 +76,38 @@ resetBreakBtn.addEventListener('click', function (e) {
     updateLocalStorage();
 });
 
+const gitCounterDiv = document.querySelector('#gitCounter');
+const addCommitBtn = document.querySelector('#addCommit');
+const subCommitBtn = document.querySelector('#subCommit');
+const resetCommitBtn = document.querySelector('#resetCommit');
+
+// COMMIT TRACKER ADD/SUB/RESET
+
+addCommitBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    userData.gitCounter++;
+    gitCounterDiv.textContent = userData.gitCounter;
+    updateLocalStorage();
+});
+
+subCommitBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (userData.gitCounter !== 0) userData.gitCounter--;
+    gitCounterDiv.textContent = userData.gitCounter;
+    updateLocalStorage();
+});
+
+resetCommitBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    userData.gitCounter = 0;
+    gitCounterDiv.textContent = userData.gitCounter;
+    updateLocalStorage();
+});
 // GIT TIMER ELEMENTS
 
 const commitFrequencyField = document.querySelector('#gitTimerDuration');
 const commitGoalField = document.querySelector('#gitTimerGoal');
+const commitDisabledCheckbox = document.querySelector('#gitTimerDisabled');
 const commitFrequencyResetBtn = document.querySelector('#gitDurationReset');
 
 // SAVE BUTTON
@@ -104,6 +132,7 @@ saveBtn.addEventListener('click', function (e) {
         commitFrequencyField.value
     );
     settings.commitSettings.commitGoal = Number(commitGoalField.value);
+    settings.commitSettings.commitDisabled = commitDisabledCheckbox.checked;
 
     updateLocalStorage();
 
@@ -116,6 +145,7 @@ saveBtn.addEventListener('click', function (e) {
 const setup = function () {
     pomCounterDiv.textContent = userData.pomCounter;
     breakCounterDiv.textContent = userData.breakCounter;
+    gitCounterDiv.textContent = userData.gitCounter;
 
     bottleSizeField.value = settings.waterSettings.bottleSize;
     waterGoalField.value = settings.waterSettings.waterGoal;
@@ -128,7 +158,7 @@ const setup = function () {
 
     commitFrequencyField.value = settings.commitSettings.commitFrequency;
     commitGoalField.value = settings.commitSettings.commitGoal;
+    commitDisabledCheckbox.checked = settings.commitSettings.commitDisabled;
 };
-console.log(settings.pomSettings.pomGoal);
 
 setup();

@@ -85,6 +85,11 @@
             <button id="addBreak">+1</button>
             <button id="subBreak">-1</button>
             <button id="resetBreak">Reset</button>
+            <div>Commit Counter</div>
+            <div id="gitCounter">0</div>
+            <button id="addCommit">+1</button>
+            <button id="subCommit">-1</button>
+            <button id="resetCommit">Reset</button>
         </form>
         <form id="Git Commit Timer">
             <div>Git Commit Timer</div>
@@ -101,6 +106,14 @@
                 <label for="gitTimerGoal">Daily Goal: </label>
                 <input name="gitTimerGoal" id="gitTimerGoal" type="number" />
                 <span> times</span>
+                <div>
+                    <label for="gitTimerDisabled">Disable? </label>
+                    <input
+                        name="gitTimerDisabled"
+                        id="gitTimerDisabled"
+                        type="checkbox"
+                    />
+                </div>
             </div>
             <button id="gitDurationReset">Reset</button>
         </form>

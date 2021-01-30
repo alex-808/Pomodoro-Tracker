@@ -13,6 +13,7 @@ const settings = {
     commitSettings: {
         commitFrequency: 30,
         commitGoal: 5,
+        commitDisabled: false,
     },
     updatefromLocalStorage() {
         const data = JSON.parse(localStorage.settings);
@@ -51,11 +52,9 @@ const userData = {
 };
 
 const updateLocalStorage = function () {
-    console.log(settings.pomSettings.pomGoal);
     localStorage.setItem('settings', JSON.stringify(settings));
     localStorage.setItem('userData', JSON.stringify(userData));
     localStorage.setItem('timerState', JSON.stringify(timerState));
-    console.log(settings.pomSettings.pomGoal);
 };
 
 const setupData = function () {
