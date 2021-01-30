@@ -91,6 +91,9 @@ saveBtn.addEventListener('click', function (e) {
     // update water settings
     settings.waterSettings.bottleSize = Number(bottleSizeField.value);
     settings.waterSettings.waterGoal = Number(waterGoalField.value);
+    settings.waterSettings.bottleGoal = Math.round(
+        settings.waterSettings.waterGoal / settings.waterSettings.bottleSize
+    );
     //update pom timer settings
     settings.pomSettings.pomDuration = Number(pomDurationField.value);
     settings.pomSettings.breakDuration = Number(breakDurationField.value);

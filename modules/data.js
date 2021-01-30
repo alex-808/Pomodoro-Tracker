@@ -2,6 +2,7 @@ const settings = {
     waterSettings: {
         bottleSize: 25,
         waterGoal: 124,
+        bottleGoal: 5,
     },
     pomSettings: {
         pomDuration: 50,

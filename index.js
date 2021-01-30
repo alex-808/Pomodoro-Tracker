@@ -18,16 +18,7 @@ const selectPomBtn = document.querySelector('#selectPom');
 const selectBreakBtn = document.querySelector('#selectBreak');
 
 // TIMER DISPLAY DIVS
-const breakCounterDiv = document.querySelector('#breakCounter');
-const pomCounterDiv = document.querySelector('#pomCounter');
 const currentTimeDiv = document.querySelector('#currentTime');
-
-// CHECKBOX DIVS
-
-const pomCheckBoxDiv = document.querySelector('#pomCBs');
-const breakCheckBoxDiv = document.querySelector('#breakCBs');
-const bottleCheckBoxDiv = document.querySelector('#bottleCBs');
-const commitCheckBoxDiv = document.querySelector('#commitCBs');
 
 // TIMER CONTROL
 
@@ -164,7 +155,6 @@ window.addEventListener('unload', function () {
 
 const generateCheckBoxes = function (el, goal, current) {
     const checkBoxArr = [];
-    console.log(current);
 
     for (let i = 0; i < goal; i++) {
         const checkbox = document.createElement('input');
@@ -175,12 +165,49 @@ const generateCheckBoxes = function (el, goal, current) {
         }
         checkBoxArr.push(checkbox);
     }
-    console.dir(checkBoxArr[0]);
     return checkBoxArr;
 };
 
+// CHECKBOX DIVS
+
+const pomCheckBoxDiv = document.querySelector('#pomCBs');
+const breakCheckBoxDiv = document.querySelector('#breakCBs');
+const bottleCheckBoxDiv = document.querySelector('#bottleCBs');
+const commitCheckBoxDiv = document.querySelector('#commitCBs');
+
+const updateUserDataFromCB = function (prop, event) {
+    console.log(prop);
+    console.log(event);
+
+    if (event.target.checked) {
+        userData[prop] += 1;
+    } else {
+        userData[prop] -= 1;
+    }
+    console.log(prop);
+    console.log(userData[prop]);
+};
+
+pomCheckBoxDiv.addEventListener('click', function (e) {
+    updateUserDataFromCB('pomCounter', e);
+});
+
+breakCheckBoxDiv.addEventListener('click', function (e) {
+    updateUserDataFromCB('breakCounter', e);
+});
+
+bottleCheckBoxDiv.addEventListener('click', function (e) {
+    updateUserDataFromCB('finishedWater', e);
+});
+
+commitCheckBoxDiv.addEventListener('click', function (e) {
+    updateUserDataFromCB('gitCounter', e);
+});
+
 let pomCheckBoxes;
 let breakCheckBoxes;
+let bottleCheckBoxes;
+let commitCheckBoxes;
 
 const setup = function () {
     notePadTextArea.value = userData.notePadText;
@@ -199,6 +226,18 @@ const setup = function () {
         breakCheckBoxDiv,
         settings.pomSettings.breakGoal,
         userData.breakCounter
+    );
+
+    bottleCheckBoxes = generateCheckBoxes(
+        bottleCheckBoxDiv,
+        settings.waterSettings.bottleGoal,
+        userData.finishedWater
+    );
+
+    commitCheckBoxes = generateCheckBoxes(
+        commitCheckBoxDiv,
+        settings.commitSettings.commitGoal,
+        userData.gitCounter
     );
 };
 
