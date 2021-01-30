@@ -26,6 +26,7 @@ const timerState = {
     currentTime: 50,
     timerActive: false,
     timerType: 'pomodoro',
+    totalPomElapsedTime: 0,
     updatefromLocalStorage() {
         const data = JSON.parse(localStorage.timerState);
         for (let [key, value] of Object.entries(data)) {

@@ -1,6 +1,10 @@
 'use strict';
 
-// todo Add event listeners on generated checkboxes
+// todo Add commit timer functionality to pom timer
+// todo Add ability to add checkboxes even when daily goal has been exceeded
+// todo Add daily reset function for user data
+// todo Add timer sound effects
+// ? Add archive so you can go through past days data?
 
 import {
     settings,
@@ -30,10 +34,30 @@ const startTimer = function () {
         currentTimeDiv.textContent = timerState.currentTime;
         timerToggleBtn.textContent = 'Stop';
 
-        console.log(timerState.timerActive);
+        // update totalPomElapsed time if pomodoro timer
+        if (timerState.timerType === 'pomodoro') {
+            timerState.totalPomElapsedTime++;
+            console.log(timerState.totalPomElapsedTime);
+            if (
+                timerState.totalPomElapsedTime %
+                    settings.commitSettings.commitFrequency ===
+                0
+            ) {
+                const prompt = window.prompt('Did you commit? (Y/N)');
+                if (prompt === 'y') {
+                    updateTrackerFromTimer('gitCounter', commitCheckBoxes);
+                }
+            }
+        }
+
         if (timerState.currentTime === 0) {
             stopTimer();
-            updatePomTrackers(timerState.timerType);
+
+            if (timerState.timerType === 'pomodoro') {
+                updateTrackerFromTimer('pomCounter', pomCheckBoxes);
+            } else {
+                updateTrackerFromTimer('breakCounter', breakCheckBoxes);
+            }
         }
     }, 10);
 };
@@ -43,6 +67,15 @@ const stopTimer = function () {
     timerToggleBtn.textContent = 'Start';
     clearInterval(timer);
     timerState.timerActive = false;
+};
+
+// GIT TRACKER CONTROL
+
+const updateTrackerFromTimer = function (prop, checkboxes) {
+    userData[prop]++;
+    console.log(checkboxes);
+    const unchecked = checkboxes.find((el) => el.checked === false);
+    unchecked.checked = true;
 };
 
 // TIMER BUTTONS
@@ -88,20 +121,6 @@ selectBreakBtn.addEventListener('click', function (e) {
     timerState.currentTime = settings.pomSettings.breakDuration;
     currentTimeDiv.textContent = timerState.currentTime;
 });
-
-// POM TRACKER CONTROL
-
-const updatePomTrackers = function (timerType) {
-    if (timerState.timerType === 'pomodoro') {
-        userData.pomCounter++;
-        const unchecked = pomCheckBoxes.find((el) => el.checked === false);
-        unchecked.checked = true;
-    } else {
-        userData.breakCounter++;
-        const unchecked = breakCheckBoxes.find((el) => el.checked === false);
-        unchecked.checked = true;
-    }
-};
 
 // NOTEPAD
 
