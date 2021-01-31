@@ -1,8 +1,6 @@
 'use strict';
 
-// todo Add ability to add checkboxes even when daily goal has been exceeded
 // todo Add daily reset function for user data
-// todo Add timer sound effects
 // ? Add archive so you can go through past days data?
 
 import {
@@ -24,6 +22,8 @@ const selectBreakBtn = document.querySelector('#selectBreak');
 const currentTimeDiv = document.querySelector('#currentTime');
 
 // TIMER CONTROL
+
+const timerSound = document.querySelector('#timerSound');
 
 const startTimer = function () {
     console.log('timer started');
@@ -51,6 +51,7 @@ const startTimer = function () {
 
         if (timerState.currentTime === 0) {
             stopTimer();
+            timerSound.play();
 
             if (timerState.timerType === 'pomodoro') {
                 updateTrackerFromTimer('pomCounter', pomCheckBoxes);

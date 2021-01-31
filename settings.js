@@ -1,4 +1,9 @@
-import { settings, userData, updateLocalStorage } from './modules/data';
+import {
+    settings,
+    defaultSettings,
+    userData,
+    updateLocalStorage,
+} from './modules/data';
 
 // todo: Add functionality to the reset buttons
 
@@ -105,9 +110,9 @@ resetCommitBtn.addEventListener('click', function (e) {
 });
 // GIT TIMER ELEMENTS
 
-const commitFrequencyField = document.querySelector('#gitTimerDuration');
-const commitGoalField = document.querySelector('#gitTimerGoal');
-const commitDisabledCheckbox = document.querySelector('#gitTimerDisabled');
+const commitFrequencyField = document.querySelector('#commitFrequency');
+const commitGoalField = document.querySelector('#commitGoal');
+const commitDisabledCheckbox = document.querySelector('#commitDisabled');
 const commitFrequencyResetBtn = document.querySelector('#gitDurationReset');
 
 // SAVE BUTTON
@@ -138,6 +143,38 @@ saveBtn.addEventListener('click', function (e) {
 
     console.log(settings);
     console.log(localStorage.settings);
+});
+
+// RESET BUTTONS
+
+const resetProperties = function (prop, ...fields) {
+    settings[prop] = defaultSettings[prop];
+    for (let field of fields) {
+        console.log(field.id);
+        console.log(settings[prop][field.id]);
+        field.value = settings[prop][field.id];
+    }
+};
+
+waterReset.addEventListener('click', function (e) {
+    e.preventDefault();
+    resetProperties('waterSettings', bottleSizeField, waterGoalField);
+});
+
+pomTimeResetBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    resetProperties(
+        'pomSettings',
+        pomDurationField,
+        breakDurationField,
+        pomGoalField,
+        breakGoalField
+    );
+});
+
+commitFrequencyResetBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    resetProperties('commitSettings', commitFrequencyField, commitGoalField);
 });
 
 // SETUP
