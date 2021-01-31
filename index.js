@@ -9,6 +9,10 @@ import {
     userData,
     updateLocalStorage,
 } from './modules/data.js';
+import { startDayCheckTimer, checkDayChange } from './modules/daily.js';
+
+checkDayChange();
+startDayCheckTimer();
 
 let timer;
 

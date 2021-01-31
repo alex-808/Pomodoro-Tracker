@@ -59,6 +59,12 @@ const timerState = {
             this[`${key}`] = value;
         }
     },
+    reset() {
+        this.currentTime = 0;
+        this.timerActive = false;
+        this.timerType = 'pomodoro';
+        this.totalPomElapsedTime = 0;
+    },
 };
 
 const userData = {
@@ -73,6 +79,12 @@ const userData = {
         for (let [key, value] of Object.entries(data)) {
             this[`${key}`] = value;
         }
+    },
+    reset() {
+        this.finishedWater = 0;
+        this.pomCounter = 0;
+        this.breakCounter = 0;
+        this.gitCounter = 0;
     },
 };
 

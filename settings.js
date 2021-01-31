@@ -5,8 +5,6 @@ import {
     updateLocalStorage,
 } from './modules/data';
 
-// todo: Add functionality to the reset buttons
-
 // WATER TRACKER ELEMENTS
 
 const bottleSizeField = document.querySelector('#bottleSize');
