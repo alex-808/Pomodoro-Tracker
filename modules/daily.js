@@ -1,7 +1,5 @@
 import { settings, timerState, updateLocalStorage, userData } from './data';
 
-// todo Add an archive object and a method to push user data there
-
 const formatDate = function (date) {
     const month = date.getMonth() + 1;
     const day = date.getDate();
@@ -28,8 +26,6 @@ const checkDayChange = function () {
 };
 
 const archiveDay = function () {
-    // const entry = [settings, userData, timerState, localStorage.storedDate];
-    // ! Currently archiving is bugged
     const entry = {
         settings: settings,
         userData: userData,
@@ -37,17 +33,15 @@ const archiveDay = function () {
         storedDate: localStorage.storedDate,
     };
     if (!localStorage.archive) {
-        localStorage.setItem('archive', entry);
+        console.log('No archive found. Creating archive.');
+        localStorage.setItem('archive', '[]');
+        checkDayChange();
         return;
     }
-    console.log(localStorage.archive);
-    const archive = JSON.parse(localStorage.archive);
+    const archive = JSON.parse(localStorage.getItem('archive'));
     archive.push(entry);
-    localStorage.setItem('archive', entry);
-    console.log(archive);
+    localStorage.setItem('archive', JSON.stringify(archive));
 };
-
-archiveDay();
 
 const startDayCheckTimer = function () {
     setInterval(function () {

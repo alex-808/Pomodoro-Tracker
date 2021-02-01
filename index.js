@@ -1,8 +1,5 @@
 'use strict';
 
-// todo Add daily reset function for user data
-// ? Add archive so you can go through past days data?
-
 import {
     settings,
     timerState,
@@ -144,7 +141,6 @@ const notePadTextArea = document.querySelector('#notePad');
 
 notePadTextArea.addEventListener('keyup', function (e) {
     userData.notePadText = notePadTextArea.value;
-    updateLocalStorage();
 });
 
 // TO DOS
