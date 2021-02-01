@@ -19,6 +19,7 @@ ul {
 }
 
 .invisible {
-  visibility: hidden;
+  display: none;
+  position: absolute;
 }
 /*# sourceMappingURL=style.css.map */

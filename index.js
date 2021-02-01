@@ -147,30 +147,84 @@ notePadTextArea.addEventListener('keyup', function (e) {
 
 const todosForm = document.querySelector('#todosForm');
 const todoList = document.querySelector('#todoList');
+const addTodoBtn = document.querySelector('.addTodo');
 const addTodoField = document.querySelector('#addTodoField');
-const addTodoBtn = document.querySelector('#addTodo');
 
-addTodoBtn.addEventListener('click', function (e) {
+// todo addTodoField only appears when addTodoBtn clicked
+
+addTodoField.addEventListener('blur', function () {
+    addTodoField.classList.add('invisible');
+    addTodoBtn.classList.remove('invisible');
+});
+
+todosForm.addEventListener('click', function (e) {
+    const targetClassList = e.target.classList;
+
+    console.log(e.target);
+    if (targetClassList.contains('todoCB')) {
+        console.log('cb');
+        if (e.target.checked) {
+            e.target.parentNode.classList.add('todoStrikeThru');
+        } else e.target.parentNode.classList.remove('todoStrikeThru');
+        return;
+    }
     e.preventDefault();
 
+    if (this === e.target) return;
+
+    console.log(targetClassList.contains('addTodo'));
+
+    if (targetClassList.contains('addTodo')) {
+        console.log('addTodo');
+        addTodoField.classList.remove('invisible');
+        addTodoField.focus();
+        addTodoField.select();
+        addTodoBtn.classList.add('invisible');
+    }
+    if (targetClassList.contains('delTodo')) {
+        console.log('deltodo');
+    }
+});
+
+todosForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    console.log('submitted');
     const todoText = addTodoField.value;
+    const todoItem = createTodoItem(todoText);
+    todoList.append(todoItem);
+
     addTodoField.value = '';
+    addTodoField.classList.add('invisible');
+    addTodoBtn.classList.remove('invisible');
+
+    const storageID = userData.toDoList.length;
+    userData.toDoList.push({ id: storageID, todo: todoText, complete: false });
+    console.log(userData.toDoList);
+});
+
+const createTodoItem = function (str) {
+    const todoText = str;
 
     const todoItem = document.createElement('li');
+    todoItem.textContent = todoText;
+
     const todoCB = document.createElement('input');
     todoCB.type = 'checkbox';
-
-    todoItem.textContent = todoText;
-    todoList.prepend(todoItem);
-    todoItem.prepend(todoCB);
-
+    todoCB.classList.add('todoCB');
     todoCB.addEventListener('click', function (e) {
         console.dir(e.target.checked);
-        if (e.target.checked) {
-            todoItem.classList.add('todoStrikeThru');
-        } else todoItem.classList.remove('todoStrikeThru');
     });
-});
+
+    const deleteItemBtn = document.createElement('button');
+    deleteItemBtn.type = 'button';
+    deleteItemBtn.textContent = 'x';
+
+    todoItem.prepend(todoCB);
+    todoItem.append(deleteItemBtn);
+
+    return todoItem;
+};
 
 // UPDATE LOCALSTORAGE BEFORE NAVIGATION
 
@@ -265,6 +319,11 @@ const setup = function () {
         settings.commitSettings.commitGoal,
         userData.gitCounter
     );
+
+    userData.toDoList.forEach(function (entry) {
+        const todoItem = createTodoItem(entry.todo);
+        todoList.append(todoItem);
+    });
 };
 
 setup();
