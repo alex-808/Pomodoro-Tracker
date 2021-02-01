@@ -155,8 +155,6 @@ addTodoField.addEventListener('blur', function () {
     addTodoBtn.classList.remove('invisible');
 });
 
-// todo make checking CBs update userData
-
 todosForm.addEventListener('click', function (e) {
     const targetClassList = e.target.classList;
 
@@ -204,14 +202,15 @@ todosForm.addEventListener('submit', function (e) {
     addTodoBtn.classList.remove('invisible');
 
     userData.toDoList.push({
-        id: todoItem.dataset.storageIndex,
+        id: Number(todoItem.dataset.storageIndex),
         todo: todoText,
-        complete: false,
+        completed: false,
     });
     console.log(userData.toDoList);
 });
 
-// todo add IDing of items
+console.log(userData);
+
 const createTodoItem = function (str, completed = false) {
     console.log(completed);
     const todoText = str;
