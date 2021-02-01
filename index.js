@@ -150,29 +150,34 @@ const todoList = document.querySelector('#todoList');
 const addTodoBtn = document.querySelector('.addTodo');
 const addTodoField = document.querySelector('#addTodoField');
 
-// todo addTodoField only appears when addTodoBtn clicked
-
 addTodoField.addEventListener('blur', function () {
     addTodoField.classList.add('invisible');
     addTodoBtn.classList.remove('invisible');
 });
 
+// todo make checking CBs update userData
+
 todosForm.addEventListener('click', function (e) {
     const targetClassList = e.target.classList;
 
-    console.log(e.target);
     if (targetClassList.contains('todoCB')) {
+        const todoItem = e.target.parentNode;
+        const storageIndex = todoItem.dataset.storageIndex;
         console.log('cb');
+
         if (e.target.checked) {
-            e.target.parentNode.classList.add('todoStrikeThru');
-        } else e.target.parentNode.classList.remove('todoStrikeThru');
+            todoItem.classList.add('todoStrikeThru');
+            userData.toDoList[storageIndex].completed = true;
+        } else {
+            todoItem.classList.remove('todoStrikeThru');
+            userData.toDoList[storageIndex].completed = false;
+        }
+
         return;
     }
+
     e.preventDefault();
-
     if (this === e.target) return;
-
-    console.log(targetClassList.contains('addTodo'));
 
     if (targetClassList.contains('addTodo')) {
         console.log('addTodo');
@@ -198,23 +203,34 @@ todosForm.addEventListener('submit', function (e) {
     addTodoField.classList.add('invisible');
     addTodoBtn.classList.remove('invisible');
 
-    const storageID = userData.toDoList.length;
-    userData.toDoList.push({ id: storageID, todo: todoText, complete: false });
+    userData.toDoList.push({
+        id: todoItem.dataset.storageIndex,
+        todo: todoText,
+        complete: false,
+    });
     console.log(userData.toDoList);
 });
 
-const createTodoItem = function (str) {
+// todo add IDing of items
+const createTodoItem = function (str, completed = false) {
+    console.log(completed);
     const todoText = str;
+
+    const elementID = `todo-${todoList.children.length}`;
+    const storageIndex = todoList.children.length;
 
     const todoItem = document.createElement('li');
     todoItem.textContent = todoText;
+    todoItem.id = elementID;
+    todoItem.dataset.storageIndex = storageIndex;
 
     const todoCB = document.createElement('input');
     todoCB.type = 'checkbox';
     todoCB.classList.add('todoCB');
-    todoCB.addEventListener('click', function (e) {
-        console.dir(e.target.checked);
-    });
+    if (completed) {
+        todoCB.checked = true;
+        todoItem.classList.add('todoStrikeThru');
+    }
 
     const deleteItemBtn = document.createElement('button');
     deleteItemBtn.type = 'button';
@@ -321,7 +337,7 @@ const setup = function () {
     );
 
     userData.toDoList.forEach(function (entry) {
-        const todoItem = createTodoItem(entry.todo);
+        const todoItem = createTodoItem(entry.todo, entry.completed);
         todoList.append(todoItem);
     });
 };
