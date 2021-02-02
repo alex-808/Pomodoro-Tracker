@@ -186,6 +186,16 @@ todosForm.addEventListener('click', function (e) {
     }
     if (targetClassList.contains('delTodo')) {
         console.log('deltodo');
+        const todoItem = e.target.parentNode;
+        const storageIndex = Number(todoItem.dataset.storageIndex);
+        console.log('storageIndex', storageIndex);
+        const userTodoIndex = userData.toDoList.findIndex(function (el) {
+            console.log(el.id);
+            return el.id === storageIndex;
+        });
+        console.log('usderTodoIndex', userTodoIndex);
+        userData.toDoList.splice(userTodoIndex, 1);
+        todoItem.remove();
     }
 });
 
@@ -209,14 +219,16 @@ todosForm.addEventListener('submit', function (e) {
     console.log(userData.toDoList);
 });
 
-console.log(userData);
-
-const createTodoItem = function (str, completed = false) {
-    console.log(completed);
+const createTodoItem = function (str, completed = false, storageIndex) {
     const todoText = str;
 
     const elementID = `todo-${todoList.children.length}`;
-    const storageIndex = todoList.children.length;
+    if (userData.toDoList.length === 0) {
+        storageIndex = 0;
+    } else if (!Number.isFinite(storageIndex)) {
+        console.log('storageIndex undefined');
+        storageIndex = userData.toDoList[userData.toDoList.length - 1].id + 1;
+    }
 
     const todoItem = document.createElement('li');
     todoItem.textContent = todoText;
@@ -234,6 +246,7 @@ const createTodoItem = function (str, completed = false) {
     const deleteItemBtn = document.createElement('button');
     deleteItemBtn.type = 'button';
     deleteItemBtn.textContent = 'x';
+    deleteItemBtn.classList.add('delTodo');
 
     todoItem.prepend(todoCB);
     todoItem.append(deleteItemBtn);
@@ -336,7 +349,7 @@ const setup = function () {
     );
 
     userData.toDoList.forEach(function (entry) {
-        const todoItem = createTodoItem(entry.todo, entry.completed);
+        const todoItem = createTodoItem(entry.todo, entry.completed, entry.id);
         todoList.append(todoItem);
     });
 };
