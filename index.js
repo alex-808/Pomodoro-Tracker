@@ -156,6 +156,7 @@ addTodoField.addEventListener('blur', function () {
 });
 
 todosForm.addEventListener('click', function (e) {
+    console.dir(e);
     const targetClassList = e.target.classList;
 
     if (targetClassList.contains('todoCB')) {
@@ -172,6 +173,50 @@ todosForm.addEventListener('click', function (e) {
         }
 
         return;
+    }
+
+    if (targetClassList.contains('todoText')) {
+        const todoTextElement = e.target;
+        console.log(todoTextElement);
+        console.log('edit');
+        const origText = todoTextElement.textContent;
+        const editBox = document.createElement('input');
+        editBox.type = 'text';
+        editBox.classList.add('editBox');
+        editBox.value = origText;
+
+        todoTextElement.previousElementSibling.after(editBox);
+        editBox.focus();
+        editBox.select();
+        todoTextElement.classList.add('invisible');
+
+        editBox.addEventListener('keypress', function (e) {
+            if (e.keyCode === 13) {
+                console.log('Entered');
+                console.log(userData);
+                const newText = editBox.value;
+                const storageIndex = Number(
+                    todoTextElement.parentElement.dataset.storageIndex
+                );
+                userData.toDoList[storageIndex].todo = newText;
+
+                todoTextElement.textContent = newText;
+                todoTextElement.classList.remove('invisible');
+                editBox.removeEventListener('blur', origTextOnDeselect);
+                editBox.remove();
+            }
+            console.log('text');
+        });
+
+        const origTextOnDeselect = function () {
+            console.log('Deselected');
+            if (editBox) {
+                editBox.remove();
+            }
+            console.log(origText);
+            todoTextElement.classList.remove('invisible');
+        };
+        editBox.addEventListener('blur', origTextOnDeselect);
     }
 
     e.preventDefault();
@@ -198,9 +243,21 @@ todosForm.addEventListener('click', function (e) {
         todoItem.remove();
     }
 });
-
+// todo Just need to get submitting edited todos done
 todosForm.addEventListener('submit', function (e) {
     e.preventDefault();
+    console.log(e.target);
+    // if (e.target.classList.contains('editBox')) {
+    //     console.log('editBox');
+    //     const editBox = e.target;
+    //     const newText = editBox.value;
+    //     const textArea = document.createElement('span');
+    //     textArea.classList.add('todoText');
+    //     textArea.textContent = newText;
+    //     editBox.previousSibling.after(textArea);
+    //     editBox.remove();
+    //     return;
+    // }
 
     console.log('submitted');
     const todoText = addTodoField.value;
@@ -231,7 +288,7 @@ const createTodoItem = function (str, completed = false, storageIndex) {
     }
 
     const todoItem = document.createElement('li');
-    todoItem.textContent = todoText;
+    // todoItem.textContent = todoText;
     todoItem.id = elementID;
     todoItem.dataset.storageIndex = storageIndex;
 
@@ -243,12 +300,17 @@ const createTodoItem = function (str, completed = false, storageIndex) {
         todoItem.classList.add('todoStrikeThru');
     }
 
+    const textArea = document.createElement('span');
+    textArea.classList.add('todoText');
+    textArea.textContent = todoText;
+
     const deleteItemBtn = document.createElement('button');
     deleteItemBtn.type = 'button';
     deleteItemBtn.textContent = 'x';
     deleteItemBtn.classList.add('delTodo');
 
     todoItem.prepend(todoCB);
+    todoItem.append(textArea);
     todoItem.append(deleteItemBtn);
 
     return todoItem;
