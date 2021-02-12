@@ -8,40 +8,42 @@
         <script src="index.js" defer></script>
     </head>
     <body>
-        <form id="pomTimerForm">
-            <div>Timer</div>
-            <div id="currentTime">0</div>
-            <button id="timerToggle">Start</button>
-            <button id="timerReset">Reset</button>
-            <button id="selectPom">Pomordoro</button>
-            <button id="selectBreak">Break</button>
-        </form>
+        <div class="container">
+            <form id="pomTimerForm">
+                <div>Timer</div>
+                <div id="currentTime">0</div>
+                <button id="timerToggle">Start</button>
+                <button id="timerReset">Reset</button>
+                <button id="selectPom">Pomordoro</button>
+                <button id="selectBreak">Break</button>
+            </form>
 
-        <div id="pomCBs">Poms:</div>
-        <div id="breakCBs">Breaks:</div>
-        <div id="bottleCBs">Bottles:</div>
-        <div id="commitCBs">Commits:</div>
+            <div id="pomCBs">Poms:</div>
+            <div id="breakCBs">Breaks:</div>
+            <div id="bottleCBs">Bottles:</div>
+            <div id="commitCBs">Commits:</div>
 
-        <form>
-            <div>Notepad</div>
-            <textarea id="notePad"></textarea>
-        </form>
+            <form>
+                <div>Notepad</div>
+                <textarea id="notePad"></textarea>
+            </form>
 
-        <form id="todosForm">
-            <div>ToDo List</div>
-            <ul id="todoList"></ul>
-            <input type="text" id="addTodoField" class="invisible" />
-            <button type="button" class="addTodo">Add ToDo</button>
-        </form>
+            <form id="todosForm">
+                <div>ToDo List</div>
+                <ul id="todoList"></ul>
+                <input type="text" id="addTodoField" class="invisible" />
+                <button type="button" class="addTodo">Add ToDo</button>
+            </form>
 
-        <a href="settings.html" class="settingsNavBtn"
-            ><button type="button">Settings</button></a
-        >
+            <a href="settings.html" class="settingsNavBtn"
+                ><button type="button">Settings</button></a
+            >
 
-        <div>
-            <audio id="timerSound">
-                <source src="audio/space_ring.wav" />
-            </audio>
+            <div>
+                <audio id="timerSound">
+                    <source src="audio/space_ring.wav" />
+                </audio>
+            </div>
         </div>
     </body>
 </html>

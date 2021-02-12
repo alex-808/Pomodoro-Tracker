@@ -1,17 +1,95 @@
-div {
-  margin: 10px;
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-size: 16px;
+  src: url("./fonts/Roboto/Roboto-Regular.ttf");
 }
 
-form {
-  margin: 40px;
-  border-style: solid;
-  border-color: black;
-  border-width: 5px;
-  padding: 10px;
+h1 {
+  font-size: 3.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+html {
+  font-family: 'Roboto';
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 0.85rem;
+  color: black;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
 }
 
 ul {
   list-style-type: none;
+}
+
+button {
+  background: #c4c4c4;
+  font-size: 1rem;
+  border: none;
+}
+
+input {
+  font-size: 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+form {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+div {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 10% 1fr 1fr;
+      grid-template-columns: 10% 1fr 1fr;
+}
+
+.center-column {
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+}
+
+.one-char-input {
+  width: 1ch;
+}
+
+.two-char-input {
+  width: 2ch;
+}
+
+.three-char-input {
+  width: 3ch;
 }
 
 .todoStrikeThru {

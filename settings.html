@@ -8,104 +8,126 @@
         <script src="./settings.js" defer></script>
     </head>
     <body>
-        <form id="waterForm">
-            <div>
-                <label for="botSize">Bottle Size: </label>
-                <input
-                    name="botSize"
-                    id="bottleSize"
-                    type="number"
-                    required
-                /><span> fl oz</span>
-            </div>
-            <div>
-                <label for="waterGoal">Daily Goal: </label>
-                <input
-                    name="waterGoal"
-                    id="waterGoal"
-                    type="number"
-                    required
-                /><span> fl oz</span>
-            </div>
+        <div class="container">
+            <form class="center-column" id="waterForm">
+                <h2>Water Consumption</h2>
+                <div>
+                    <label for="botSize">Bottle Size: </label>
+                    <input
+                        name="botSize"
+                        id="bottleSize"
+                        type="number"
+                        max="2"
+                        class="two-char-input"
+                        required
+                    /><span> fl oz</span>
+                </div>
+                <div>
+                    <label for="waterGoal">Daily Goal: </label>
+                    <input
+                        name="waterGoal"
+                        id="waterGoal"
+                        type="number"
+                        class="three-char-input"
+                        required
+                    /><span> fl oz</span>
+                </div>
 
-            <button id="waterReset">Reset</button>
-        </form>
-        <div id="waterCheckBoxes"></div>
-        <div id="waterMsg"></div>
+                <button id="waterReset">Reset</button>
+            </form>
 
-        <form id="pomTimerForm">
-            <div>
-                <label for="pomDuration">Timer Duration: </label>
-                <input
-                    name="pomDuration"
-                    id="pomDuration"
-                    type="number"
-                    required
-                /><span> minutes</span>
-            </div>
+            <form class="center-column" id="pomTimerForm">
+                <h2>Pom Timer</h2>
+                <div>
+                    <label for="pomDuration">Timer Duration: </label>
+                    <input
+                        name="pomDuration"
+                        id="pomDuration"
+                        type="number"
+                        class="three-char-input"
+                        required
+                    /><span> minutes</span>
+                </div>
 
-            <div>
-                <label for="breakDuration">Break Duration: </label>
-                <input
-                    name="breakDuration"
-                    id="breakDuration"
-                    type="number"
-                    required
-                /><span> minutes</span>
-            </div>
-            <div>
-                <label for="pomGoal">Pom Goal: </label>
-                <input
-                    name="pomGoal"
-                    id="pomGoal"
-                    type="number"
-                    required
-                /><span> poms</span>
-            </div>
-            <div>
-                <label for="breakGoal">Break Goal: </label>
-                <input
-                    name="breakGoal"
-                    id="breakGoal"
-                    type="number"
-                    required
-                /><span> breaks</span>
-            </div>
+                <div>
+                    <label for="breakDuration">Break Duration: </label>
+                    <input
+                        name="breakDuration"
+                        id="breakDuration"
+                        type="number"
+                        class="three-char-input"
+                        required
+                    /><span> minutes</span>
+                </div>
+                <div>
+                    <label for="pomGoal">Pom Goal: </label>
+                    <input
+                        name="pomGoal"
+                        id="pomGoal"
+                        type="number"
+                        class="two-char-input"
+                        required
+                    /><span> poms</span>
+                </div>
+                <div>
+                    <label for="breakGoal">Break Goal: </label>
+                    <input
+                        name="breakGoal"
+                        id="breakGoal"
+                        type="number"
+                        class="two-char-input"
+                        required
+                    /><span> breaks</span>
+                </div>
 
-            <button id="pomReset">Reset</button>
-        </form>
-        <form id="pomCounterForm">
-            <div>Pom Counter</div>
-            <div id="pomCounter">0</div>
-            <button id="addPom">+1</button>
-            <button id="subPom">-1</button>
-            <button id="resetPom">Reset</button>
-            <div>Break Counter</div>
-            <div id="breakCounter">0</div>
-            <button id="addBreak">+1</button>
-            <button id="subBreak">-1</button>
-            <button id="resetBreak">Reset</button>
-            <div>Commit Counter</div>
-            <div id="gitCounter">0</div>
-            <button id="addCommit">+1</button>
-            <button id="subCommit">-1</button>
-            <button id="resetCommit">Reset</button>
-        </form>
-        <form id="Git Commit Timer">
-            <div>Git Commit Timer</div>
-            <div>
-                <label for="gitTimerDuration">Commit frequency: </label
-                ><span> Every</span>
-                <input
-                    name="gitTimerDuration"
-                    id="commitFrequency"
-                    type="number"
-                /><span> minutes</span>
-            </div>
-            <div>
-                <label for="gitTimerGoal">Daily Goal: </label>
-                <input name="gitTimerGoal" id="commitGoal" type="number" />
-                <span> times</span>
+                <button id="pomReset">Reset</button>
+            </form>
+            <form class="center-column" id="pomCounterForm">
+                <h2>Counters</h2>
+                <div>
+                    <span>Pom Counter</span>
+                    <span id="pomCounter">0</span>
+                    <button id="addPom">+1</button>
+                    <button id="subPom">-1</button>
+                    <button id="resetPom">Reset</button>
+                </div>
+                <div>
+                    <span>Break Counter</span>
+                    <span id="breakCounter">0</span>
+                    <button id="addBreak">+1</button>
+                    <button id="subBreak">-1</button>
+                    <button id="resetBreak">Reset</button>
+                </div>
+                <div>
+                    <span>Commit Counter</span>
+                    <span id="gitCounter">0</span>
+                    <button id="addCommit">+1</button>
+                    <button id="subCommit">-1</button>
+                    <button id="resetCommit">Reset</button>
+                </div>
+            </form>
+            <form class="center-column" id="Git Commit Timer">
+                <h2>Commit Timer</h2>
+                <div>
+                    <label for="gitTimerDuration">Commit frequency: </label
+                    ><span> Every</span>
+                    <input
+                        name="gitTimerDuration"
+                        id="commitFrequency"
+                        type="number"
+                        class="three-char-input"
+                    /><span> minutes</span>
+                </div>
+                <div>
+                    <label for="gitTimerGoal">Daily Goal: </label>
+                    <input
+                        name="gitTimerGoal"
+                        id="commitGoal"
+                        type="number"
+                        class="two-char-input"
+                    />
+                    <span> times</span>
+                </div>
                 <div>
                     <label for="gitTimerDisabled">Disable? </label>
                     <input
@@ -114,11 +136,13 @@
                         type="checkbox"
                     />
                 </div>
-            </div>
-            <button id="gitDurationReset">Reset</button>
-        </form>
+                <button id="gitDurationReset">Reset</button>
+            </form>
+            <div class="center-column">
+                <a href="index.html"><button>Back to Timer</button></a>
 
-        <a href="index.html"><button>Back to Timer</button></a>
-        <button class="save-btn">Save</button>
+                <button class="save-btn">Save</button>
+            </div>
+        </div>
     </body>
 </html>

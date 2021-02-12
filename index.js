@@ -243,21 +243,9 @@ todosForm.addEventListener('click', function (e) {
         todoItem.remove();
     }
 });
-// todo Just need to get submitting edited todos done
 todosForm.addEventListener('submit', function (e) {
     e.preventDefault();
     console.log(e.target);
-    // if (e.target.classList.contains('editBox')) {
-    //     console.log('editBox');
-    //     const editBox = e.target;
-    //     const newText = editBox.value;
-    //     const textArea = document.createElement('span');
-    //     textArea.classList.add('todoText');
-    //     textArea.textContent = newText;
-    //     editBox.previousSibling.after(textArea);
-    //     editBox.remove();
-    //     return;
-    // }
 
     console.log('submitted');
     const todoText = addTodoField.value;
@@ -288,7 +276,6 @@ const createTodoItem = function (str, completed = false, storageIndex) {
     }
 
     const todoItem = document.createElement('li');
-    // todoItem.textContent = todoText;
     todoItem.id = elementID;
     todoItem.dataset.storageIndex = storageIndex;
 
