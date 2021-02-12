@@ -76,15 +76,77 @@ div {
     margin-bottom: 1rem;
 }
 
-.container {
+.settings-container {
     display: grid;
     grid-template-columns: 10% 1fr 1fr;
+}
+
+.timer-container {
+    display: grid;
+    grid-template-columns: 1fr 50% 1fr;
+}
+
+.side-drawer {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border-style: solid;
+    border-width: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    // padding-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 50%;
+}
+
+.side-drawer-open {
+    filter: drop-shadow(-30px 30px);
+    border-width: 1px;
+    width: 50%;
 }
 
 .center-column {
     grid-column-start: 2;
 }
 
+.close-side-drawer-div {
+    grid-row-start: 3;
+    grid-column-start: 2;
+}
+
+.open-side-drawer-div {
+    grid-column-start: 3;
+    grid-row-start: 1;
+}
+
+.settingsNavBtn {
+    grid-column-start: 1;
+}
+
+#currentTime {
+    font-size: 7rem;
+    text-align: center;
+    width: 100%;
+}
+
+#pomTimerForm {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.timer-button {
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    width: 40%;
+}
 .one-char-input {
     width: 1ch;
 }
@@ -96,6 +158,17 @@ div {
 .three-char-input {
     width: 3ch;
 }
+
+textarea {
+    width: 100%;
+    height: 50%;
+}
+
+#addTodoField,
+.editBox {
+    width: 14ch;
+}
+
 .todoStrikeThru {
     text-decoration: line-through;
 }

@@ -68,16 +68,98 @@ div {
   margin-bottom: 1rem;
 }
 
-.container {
+.settings-container {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 10% 1fr 1fr;
       grid-template-columns: 10% 1fr 1fr;
 }
 
+.timer-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 50% 1fr;
+      grid-template-columns: 1fr 50% 1fr;
+}
+
+.side-drawer {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: white;
+  border-style: solid;
+  border-width: 0;
+  overflow-x: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 50%;
+      grid-template-rows: 1fr 1fr 50%;
+}
+
+.side-drawer-open {
+  -webkit-filter: drop-shadow(-30px 30px);
+          filter: drop-shadow(-30px 30px);
+  border-width: 1px;
+  width: 50%;
+}
+
 .center-column {
   -ms-grid-column: 2;
       grid-column-start: 2;
+}
+
+.close-side-drawer-div {
+  -ms-grid-row: 3;
+      grid-row-start: 3;
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+}
+
+.open-side-drawer-div {
+  -ms-grid-column: 3;
+      grid-column-start: 3;
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+}
+
+.settingsNavBtn {
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+}
+
+#currentTime {
+  font-size: 7rem;
+  text-align: center;
+  width: 100%;
+}
+
+#pomTimerForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.timer-button {
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  width: 40%;
 }
 
 .one-char-input {
@@ -90,6 +172,16 @@ div {
 
 .three-char-input {
   width: 3ch;
+}
+
+textarea {
+  width: 100%;
+  height: 50%;
+}
+
+#addTodoField,
+.editBox {
+  width: 14ch;
 }
 
 .todoStrikeThru {

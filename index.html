@@ -8,37 +8,41 @@
         <script src="index.js" defer></script>
     </head>
     <body>
-        <div class="container">
-            <form id="pomTimerForm">
-                <div>Timer</div>
+        <div class="timer-container">
+            <form class="center-column" id="pomTimerForm">
                 <div id="currentTime">0</div>
-                <button id="timerToggle">Start</button>
-                <button id="timerReset">Reset</button>
-                <button id="selectPom">Pomordoro</button>
-                <button id="selectBreak">Break</button>
+                <button class="timer-button" id="timerToggle">Start</button>
+                <button class="timer-button" id="timerReset">Reset</button>
+                <button class="timer-button" id="selectPom">Pomordoro</button>
+                <button class="timer-button" id="selectBreak">Break</button>
             </form>
 
-            <div id="pomCBs">Poms:</div>
-            <div id="breakCBs">Breaks:</div>
-            <div id="bottleCBs">Bottles:</div>
-            <div id="commitCBs">Commits:</div>
+            <div class="center-column" id="pomCBs">Poms:</div>
+            <div class="center-column" id="breakCBs">Breaks:</div>
+            <div class="center-column" id="bottleCBs">Bottles:</div>
+            <div class="center-column" id="commitCBs">Commits:</div>
+            <div class="side-drawer">
+                <form class="center-column">
+                    <h2>Notepad</h2>
+                    <textarea id="notePad"></textarea>
+                </form>
 
-            <form>
-                <div>Notepad</div>
-                <textarea id="notePad"></textarea>
-            </form>
-
-            <form id="todosForm">
-                <div>ToDo List</div>
-                <ul id="todoList"></ul>
-                <input type="text" id="addTodoField" class="invisible" />
-                <button type="button" class="addTodo">Add ToDo</button>
-            </form>
-
+                <form class="center-column" id="todosForm">
+                    <h2>ToDo List</h2>
+                    <ul id="todoList"></ul>
+                    <input type="text" id="addTodoField" class="invisible" />
+                    <button type="button" class="addTodo">Add ToDo</button>
+                </form>
+                <div class="close-side-drawer-div">
+                    <button class="close-side-drawer">Close</button>
+                </div>
+            </div>
             <a href="settings.html" class="settingsNavBtn"
                 ><button type="button">Settings</button></a
             >
-
+            <div class="open-side-drawer-div">
+                <button class="open-side-drawer">Open</button>
+            </div>
             <div>
                 <audio id="timerSound">
                     <source src="audio/space_ring.wav" />

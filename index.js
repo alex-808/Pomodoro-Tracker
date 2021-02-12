@@ -366,6 +366,22 @@ let breakCheckBoxes;
 let bottleCheckBoxes;
 let commitCheckBoxes;
 
+// SIDE DRAWER
+
+const openSideBtn = document.querySelector('.open-side-drawer');
+const closeSideBtn = document.querySelector('.close-side-drawer');
+
+openSideBtn.addEventListener('click', function () {
+    console.log('open');
+    document.querySelector('.side-drawer').style.width = '50%';
+    document.querySelector('.side-drawer').classList.add('side-drawer-open');
+});
+
+closeSideBtn.addEventListener('click', function () {
+    document.querySelector('.side-drawer').classList.remove('side-drawer-open');
+    document.querySelector('.side-drawer').style.width = '0';
+});
+
 const setup = function () {
     notePadTextArea.value = userData.notePadText;
     currentTimeDiv.textContent = timerState.currentTime;
