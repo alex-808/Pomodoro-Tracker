@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Pomodoro Timer</title>
-        <link href="./styles/style.css" rel="stylesheet" />
-        <script src="index.js" defer></script>
-    </head>
-    <body>
-        <div class="timer-container">
-            <form class="center-column" id="pomTimerForm">
-                <div id="currentTime">0</div>
-                <button class="timer-button" id="timerToggle">Start</button>
-                <button class="timer-button" id="timerReset">Reset</button>
-                <button class="timer-button" id="selectPom">Pomordoro</button>
-                <button class="timer-button" id="selectBreak">Break</button>
-            </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro Timer</title>
+    <link href="./styles/style.css" rel="stylesheet" />
+    <script src="index.js" type="module" defer></script>
+  </head>
+  <body>
+    <div class="timer-container">
+      <form class="center-column" id="pomTimerForm">
+        <div id="currentTime">0</div>
+        <button class="timer-button" id="timerToggle">Start</button>
+        <button class="timer-button" id="timerReset">Reset</button>
+        <button class="timer-button" id="selectPom">Pomordoro</button>
+        <button class="timer-button" id="selectBreak">Break</button>
+      </form>
 
-            <div class="center-column" id="pomCBs">Poms:</div>
-            <div class="center-column" id="breakCBs">Breaks:</div>
-            <div class="center-column" id="bottleCBs">Bottles:</div>
-            <div class="center-column" id="commitCBs">Commits:</div>
-            <div class="side-drawer">
-                <form class="center-column">
-                    <h2>Notepad</h2>
-                    <textarea id="notePad"></textarea>
-                </form>
+      <div class="center-column" id="pomCBs">Poms:</div>
+      <div class="center-column" id="breakCBs">Breaks:</div>
+      <div class="center-column" id="bottleCBs">Bottles:</div>
+      <div class="center-column" id="commitCBs">Commits:</div>
+      <div class="side-drawer">
+        <form class="center-column">
+          <h2>Notepad</h2>
+          <textarea id="notePad"></textarea>
+        </form>
 
-                <form class="center-column" id="todosForm">
-                    <h2>ToDo List</h2>
-                    <ul id="todoList"></ul>
-                    <input type="text" id="addTodoField" class="invisible" />
-                    <button type="button" class="addTodo">Add ToDo</button>
-                </form>
-                <div class="close-side-drawer-div">
-                    <button class="close-side-drawer">Close</button>
-                </div>
-            </div>
-            <a href="settings.html" class="settingsNavBtn"
-                ><button type="button">Settings</button></a
-            >
-            <div class="open-side-drawer-div">
-                <button class="open-side-drawer">Open</button>
-            </div>
-            <div>
-                <audio id="timerSound">
-                    <source src="audio/space_ring.wav" />
-                </audio>
-            </div>
+        <form class="center-column" id="todosForm">
+          <h2>ToDo List</h2>
+          <ul id="todoList"></ul>
+          <input type="text" id="addTodoField" class="invisible" />
+          <button type="button" class="addTodo">Add ToDo</button>
+        </form>
+        <div class="close-side-drawer-div">
+          <button class="close-side-drawer">Close</button>
         </div>
-    </body>
+      </div>
+      <a href="settings.html" class="settingsNavBtn"
+        ><button type="button">Settings</button></a
+      >
+      <div class="open-side-drawer-div">
+        <button class="open-side-drawer">Open</button>
+      </div>
+      <div>
+        <audio id="timerSound">
+          <source src="audio/space_ring.wav" />
+        </audio>
+      </div>
+    </div>
+  </body>
 </html>
